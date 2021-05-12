@@ -7,8 +7,14 @@
         $fullname = $_POST["fullname"];
         $email = $_POST["email"];
         $password = $_POST["password"];
+        $password_confirm = $_POST["password-confirm"];
+
+        if($password != $password_confirm)
+            header ("Location: register.html");
+
         
 
+       else{
         echo $fullname . " hello to the system". "<br>" .
         "email" . $email ."<br>" .
         "name: " . $fullname . "<br>";
@@ -25,6 +31,7 @@
         else{
             header ("Location: register.html");
         }
+       }
 
     }
     else
