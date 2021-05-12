@@ -5,22 +5,20 @@ html {
 }
 
 body {
-    margin: 0;
-    padding: 0;
     background: url("https://cdn.discordapp.com/attachments/689575741586931713/841987177692528690/background.png");
     background-position: center;
     background-repeat: no-repeat;
-
 }
 
 .box {
     display: block;
     width: 500px;
     height: 700px;
+    margin: 0 auto;
     background-color: #fff;
-    margin: 100px auto;
     border-radius: 7.5px;
     box-shadow: -5px 5px 25px #333;
+    transform: translateY(10%);
 }
 
 header {
@@ -55,12 +53,20 @@ button {
     background-color: #527fe1;
     border-radius: 5px;
     border: none;
-    margin: 3rem 0;
+    margin: 3rem 0 1rem 0;
     padding: 15px;
     color: #fff;
+}
+
+input:hover {
+    box-shadow: 0px 0px 5px rgb(228, 224, 224);
 }
 
 button:hover {
     background-color: #2862df;
     cursor: pointer;
+}
+
+a {
+    text-align: center;
 }
