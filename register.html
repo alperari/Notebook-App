@@ -9,13 +9,13 @@
     <title>Notebook-App</title>
 </head>
 <body>
-    <form class="box">
+    <form class="box" action="saveUser.php" method="POST">
         <header>Notebook-App</header>
         <p>Create new account</p>
         <div class="login">
-            <input type="text" name="full-name" id="full-name" placeholder="Full Name" required>
-            <input type="text" name="user-name" id="user-name" placeholder="Username" required>
-            <input type="email" name="email" id="email" placeholder="Email" required>
+            <input type="text" name="fullname" id="full-name" placeholder="Full Name" required>
+            <input type="text" name="username"  placeholder="Username" required>
+            <input type="text" name="email" id="email" placeholder="Email" required>
             <input type="password" name="password" id="password" placeholder="Password" required>
             <input type="password" name="password-confirm" id="password" placeholder="Password (Again)" required>
             <button type="submit">Register</button>
