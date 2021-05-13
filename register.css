@@ -68,5 +68,7 @@ button:hover {
 }
 
 a {
+    box-sizing: border-box;
+    margin: 0 110px;
     text-align: center;
 }
