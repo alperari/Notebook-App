@@ -1,6 +1,7 @@
 html {
     padding: 0;
     margin: 0;
+    scroll-behavior: smooth;
 }
 
 header {
@@ -44,8 +45,8 @@ main .bg-image {
 .top {
     background: linear-gradient(
         90deg,
-        grey,
-        rgb(179, 188, 191)
+        rgb(138, 138, 138),
+        rgb(174, 174, 174)
     );
     display: flex;
     justify-content: center;
@@ -91,6 +92,7 @@ main .bg-image {
 
 #card {
     border-style: none;
+    border-bottom-left-radius: 10px;
     background-color: #003cff;
     color: #fff;
     cursor: pointer;
@@ -158,6 +160,10 @@ main .bg-image {
     overflow-x: auto;
 }
 
+i {
+    padding: 2rem 3.5rem;
+}
+
 .content {
     display: flex;
 }
@@ -165,7 +171,7 @@ main .bg-image {
 #right {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    margin: 3em 0 0 4.5cm;
+    margin: 3em 0 0 6cm;
     column-gap: 3rem;
     border-style: none;
 }
@@ -190,10 +196,21 @@ main .bg-image {
     text-align: center;
 }
 
+.card-content div {
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+}
+
 .card-content button {
-    border-style: dashed;
+    border: 1px solid rgb(22, 100, 22);
+    box-shadow: 0 0 30px #ccc;
+    transition: .2s ease-out;
     border-radius: 5px;
     cursor: pointer;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-style: none;
 }
 
 .card {
@@ -203,7 +220,7 @@ main .bg-image {
   
 .overlay {
     position: absolute; 
-    bottom: 22%; 
+    bottom: 15%; 
     background: rgb(0, 0, 0);
     background: rgba(0, 0, 0, 0.5); /* Black see-through */
     color: #f1f1f1; 
@@ -237,5 +254,8 @@ main .bg-image {
 .card-content button:hover {
     background-color: green;
     border: 1px solid green;
-    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-style: none;
+    color: #fff;
 }
