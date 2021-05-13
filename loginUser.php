@@ -26,7 +26,7 @@
             $_SESSION["email"] = $row["e_mail"];
             $_SESSION['cart_id']  = $row["uid"];
 
-            header ("Location: homepage.php",true);
+            header ("Location: market.php",true);
         }
 
     }
