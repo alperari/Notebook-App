@@ -26,7 +26,7 @@
         $result = mysqli_query($db, $sql_query);
         echo "result: " . $result . "<br>";
         if($result == 1){
-            header ("Location: homepage.php");
+            header ("Location: index.html");
         }
         else{
             header ("Location: register.html");
