@@ -7,7 +7,7 @@
     }
     else
     {
-        echo "CONNECTED DATABASE SUCCESSFULLY. <br> Info: ". $db->info . "<br>Host Info: " . $db->host_info. "<br>Server Info:" . $db->server_info. "<br>";
+        //echo "CONNECTED DATABASE SUCCESSFULLY. <br> Info: ". $db->info . "<br>Host Info: " . $db->host_info. "<br>Server Info:" . $db->server_info. "<br>";
     }
    
 ?>
