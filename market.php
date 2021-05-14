@@ -3,6 +3,7 @@
         include "config.php";
         $orderBy = "ASC";
         $sortByCourseName = "";
+        $sortBySearchResult = "";
         $get_detailed_table_query = "SELECT * FROM users,sells,note WHERE users.uid = sells.uid AND note.note_id = sells.note_id ORDER BY note.price " . "$orderBy" ;
 
 
@@ -42,7 +43,12 @@
     <h5 id="app-name">Paper Market</h5>
 
   <!--SEARCH BOX, SEARCH ACCORDING TO TITLE,DESCRIPTION,COURSENAME -->
-  <input type="search" name="search" id="search" placeholder="Search">
+  <form action="" method="post">
+    <input type="text" name="searchResult" id="search" placeholder="Search">
+    <button> SEARCH </button> 
+  </form>
+
+
 
 
   <div id="profile-box">
@@ -117,7 +123,7 @@
 
 
         <?php
-
+        //FILTER BY COURSENAME
         if(isset($_POST["sortByCourseName"])){
           $sortByCourseName = $_POST["sortByCourseName"];
           $get_detailed_table_query =  "SELECT * FROM users,sells,note WHERE users.uid = sells.uid AND note.note_id = sells.note_id AND note.course_name = '$sortByCourseName'";
@@ -130,7 +136,22 @@
           $get_detailed_table_query = "SELECT * FROM users,sells,note WHERE users.uid = sells.uid AND note.note_id = sells.note_id ORDER BY note.price " . "$orderBy";
         }
 
+        //FILTER BY SEARCH RESULT
+        if(isset($_POST["searchResult"])){
+          $sortBySearchResult = $_POST["searchResult"];
+          $get_detailed_table_query =  "SELECT * FROM users,sells,note 
+                                        WHERE users.uid = sells.uid 
+                                        AND note.note_id = sells.note_id 
+                                        AND note.title LIKE '%$sortBySearchResult%' 
+                                        OR note.description LIKE '%$sortBySearchResult%'";
 
+          if($_POST["searchResult"] == ""){
+            $get_detailed_table_query = "SELECT * FROM users,sells,note WHERE users.uid = sells.uid AND note.note_id = sells.note_id ORDER BY note.price " . "$orderBy";
+          }
+        }
+        else{
+          $get_detailed_table_query = "SELECT * FROM users,sells,note WHERE users.uid = sells.uid AND note.note_id = sells.note_id ORDER BY note.price " . "$orderBy";
+        }
 
         $detailed_table_result = mysqli_query($db,$get_detailed_table_query);
         while($row = mysqli_fetch_assoc($detailed_table_result))
