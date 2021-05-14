@@ -77,7 +77,7 @@
           else if(isset($_POST["descButton"]))
             $orderBy = "DESC";
 
-          echo $orderBy;
+          
         ?>
 
 
@@ -125,6 +125,9 @@
           if($_POST["sortByCourseName"] == "ALL"){
             $get_detailed_table_query = "SELECT * FROM users,sells,note WHERE users.uid = sells.uid AND note.note_id = sells.note_id ORDER BY note.price " . "$orderBy";
           }
+        }
+        else{
+          $get_detailed_table_query = "SELECT * FROM users,sells,note WHERE users.uid = sells.uid AND note.note_id = sells.note_id ORDER BY note.price " . "$orderBy";
         }
 
 
