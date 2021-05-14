@@ -102,6 +102,7 @@ main .bg-image {
     background-color: #003cff;
     color: #fff;
     cursor: pointer;
+    z-index: 2;
 }
 
 .sort {

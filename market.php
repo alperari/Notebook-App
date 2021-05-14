@@ -28,11 +28,18 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
   <link rel="stylesheet" href="market.css">
   <title>Notebook/Market Place</title>
   <script>
-      $("document").ready(function () {
-        
+      $(document).ready(function(){
+        const myCard = document.querySelector('#card');
+        $("#card").on("click", () => {
+          myCard.classList.add('animate__animated', 'animate__hinge');
+        });
       });
   </script>
 </head>
