@@ -110,6 +110,7 @@
 
         <hr>
         <button type="button" id="sell">Sell</button>
+        <hr>
         <a href="#top" class="scroll-top"><i class="fa fa-angle-double-up" style="font-size:36px"></i></a>
       </section>
       <section id="right">
