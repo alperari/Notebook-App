@@ -62,12 +62,12 @@
         <div class="panel">
             <form action="" method="post">
               <input type="hidden" value="t" name="ascButton">
-              <button>ASCENDING PRICE</button> 
+              <button class="asc">ASCENDING PRICE</button> 
             </form>
 
             <form action="" method="post">
               <input type="hidden" value="t" name="descButton">
-              <button>DESCENDING PRICE</button>   
+              <button class="dsc">DESCENDING PRICE</button>   
             </form>
         </div>
 
@@ -87,7 +87,7 @@
 
         <ul class="classes">
           <form action='' method='POST'> 
-            <button type='submit' name= "sortByCourseName" value="ALL"> ALL  </button>
+            <button type='submit' class="all" name= "sortByCourseName" value="ALL"> ALL  </button>
           </form>
           <br>
 
@@ -100,7 +100,7 @@
               
               echo
               "<form action='' method='POST'>" .
-                "<button type='submit' name= sortByCourseName value= " . $row['course_name'] . ">" . $row['course_name'] . "</button>".
+                "<button type='submit' class='left-btn' name= sortByCourseName value= " . $row['course_name'] . ">" . $row['course_name'] . "</button>".
               "</form>";
             }
 
