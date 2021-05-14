@@ -8,17 +8,82 @@
 
 
         session_start();
+
+
+        //unset($_SESSION['mycart']);
+        
+
         $my_uid = $_SESSION['uid']   ;
         $my_username = $_SESSION['username']  ;
         $my_fullname = $_SESSION['fullname']  ;
         $my_email = $_SESSION['email']  ;
         $my_cart_id = $_SESSION['cart_id']  ;
 
+        /*
+        //FOR MYCART PROPERTIES
+        $_SESSION["mycart"] = [];
 
+        if(isset($_POST["addToCart"])){
+          $item_array = array(
+            'seller_uid' => $_POST['seller_uid'], 
+            'seller_username' => $_POST['seller_username'], 
+            'seller_fullname' => $_POST['seller_fullname'], 
+            'seller_email' => $_POST['seller_email'], 
+            'seller_note_id' => $_POST['seller_note_id'], 
+            'seller_note_title' => $_POST['seller_note_title'], 
+            'seller_note_description' => $_POST['seller_note_description'], 
+            'seller_note_price' => $_POST['seller_note_price'], 
+            'seller_note_coursename' => $_POST['seller_note_coursename'] 
+          );
+
+
+          var_dump($item_array);
+          echo "<br> <br>";
+
+          if(!in_array($_SESSION["mycart"], $item_array)){
+            echo "its not in";
+
+            $_SESSION["mycart"][] = $item_array;
+            var_dump($_SESSION["mycart"]);
+            echo "<br> <br>";
+          }
+          else{
+            echo "ALREADY IN <br>";
+          }
 
         
-
+          //$_SESSION["mycart"][] = $item_array;
+          
+          
+        }
+        
+        */
         //echo $my_uid     . $my_username  . $my_email  . $my_fullname     . $my_cart_id . "<br>";
+        if(isset($_POST["addToCart"])){
+          $item_array = array(
+            'seller_uid' => $_POST['seller_uid'], 
+            'seller_username' => $_POST['seller_username'], 
+            'seller_fullname' => $_POST['seller_fullname'], 
+            'seller_email' => $_POST['seller_email'], 
+            'seller_note_id' => $_POST['seller_note_id'], 
+            'seller_note_title' => $_POST['seller_note_title'], 
+            'seller_note_description' => $_POST['seller_note_description'], 
+            'seller_note_price' => $_POST['seller_note_price'], 
+            'seller_note_coursename' => $_POST['seller_note_coursename'] 
+          );
+
+          $bool_query = "SELECT * FROM notesincart WHERE " . $item_array['seller_note_id'] . " = note_id AND " . $item_array['seller_uid'] . " = " . $my_uid;
+          $result = mysqli_query($db,$select_query);
+            
+          if(mysql_num_rows($result) == 0){
+            echo "nope";
+            // INSERT INTO notesincart
+          }
+          else{
+            echo "yes";
+            //CART HAS ITEMS
+          }
+        }
 
 ?>
 <html lang="en">
@@ -52,8 +117,9 @@
 
 
   <div id="profile-box">
+  <a href="mycart.php">link text</a>
     <p> <?php echo "$my_fullname"; ?> </p>
-    <button type="button" id="card">My Card<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
+    <button type="button" id="card">My Cart<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
       <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
     </svg></button>
   </div>  
@@ -142,16 +208,14 @@
           $get_detailed_table_query =  "SELECT * FROM users,sells,note 
                                         WHERE users.uid = sells.uid 
                                         AND note.note_id = sells.note_id 
-                                        AND note.title LIKE '%$sortBySearchResult%' 
-                                        OR note.description LIKE '%$sortBySearchResult%'";
+                                        AND (note.title LIKE '%$sortBySearchResult%' 
+                                        OR note.description LIKE '%$sortBySearchResult%')";
 
           if($_POST["searchResult"] == ""){
             $get_detailed_table_query = "SELECT * FROM users,sells,note WHERE users.uid = sells.uid AND note.note_id = sells.note_id ORDER BY note.price " . "$orderBy";
           }
         }
-        else{
-          $get_detailed_table_query = "SELECT * FROM users,sells,note WHERE users.uid = sells.uid AND note.note_id = sells.note_id ORDER BY note.price " . "$orderBy";
-        }
+        
 
         $detailed_table_result = mysqli_query($db,$get_detailed_table_query);
         while($row = mysqli_fetch_assoc($detailed_table_result))
@@ -170,16 +234,35 @@
         
           echo
           "<div class='card'>" . 
-          "<img src='https://images.pexels.com/photos/6749464/pexels-photo-6749464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' alt='seller'>".
-          "<div class='card-content'>".
-          "<div>".
-          "<h3 class='Lecture'> " . $seller_note_coursename . "</h3><h3 class='card-value'>" . "$seller_note_price" . "$</h3>".
-          "</div>".
-          "<button type='submit'>Add to card</button>".
-          "</div>".
-          "<div class='overlay'><h6>". "$seller_note_title" . "</h6><br><h6>". "$seller_username" . "</h6><br><p>" . "$seller_note_description" ."</p></div>".
+           "<form action='' method='POST'>" .
+            "<img src='https://images.pexels.com/photos/6749464/pexels-photo-6749464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' alt='seller'>".
+            "<div class='card-content'>".
+            "<div>".
+            "<h3 class='Lecture'> " . $seller_note_coursename . "</h3><h3 class='card-value'>" . "$seller_note_price" . "$</h3>".
+            "</div>".
+            
+
+            "<input type='hidden' value= '$seller_uid'  name='seller_uid'>".
+            "<input type='hidden' value= '$seller_username'  name='seller_username'>".
+            "<input type='hidden' value= '$seller_fullname'  name='seller_fullname'>".
+            "<input type='hidden' value= '$seller_email'  name='seller_email'>".
+            "<input type='hidden' value= '$seller_note_id'  name='seller_note_id'>".
+            "<input type='hidden' value= '$seller_note_title'  name='seller_note_title'>".
+            "<input type='hidden' value= '$seller_note_description'  name='seller_note_description'>".
+            "<input type='hidden' value= '$seller_note_price'  name='seller_note_price'>".
+            "<input type='hidden' value= '$seller_note_coursename'  name='seller_note_coursename'>".
+
+
+            "<button type='submit' name ='addToCart'>Add to card</button>".
+            
+
+            "</div>".
+            "<div class='overlay'><h6>". "$seller_note_title" . "</h6><br><h6>". "$seller_username" . "</h6><br><p>" . "$seller_note_description" ."</p></div>".
+            "</form>".
           "</div>";
         }
+
+
         ?>
         <!--
                   <div class="card">
