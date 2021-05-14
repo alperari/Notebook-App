@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <?php
         include "config.php";
-        $orderBy = "DESC";
+        $orderBy = "ASC";
+        $sortByCourseName = "";
+        $get_detailed_table_query = "SELECT * FROM users,sells,note WHERE users.uid = sells.uid AND note.note_id = sells.note_id ORDER BY note.price " . "$orderBy" ;
+
 
         session_start();
         $my_uid = $_SESSION['uid']   ;
@@ -9,6 +12,10 @@
         $my_fullname = $_SESSION['fullname']  ;
         $my_email = $_SESSION['email']  ;
         $my_cart_id = $_SESSION['cart_id']  ;
+
+
+
+        
 
         //echo $my_uid     . $my_username  . $my_email  . $my_fullname     . $my_cart_id . "<br>";
 
@@ -30,10 +37,14 @@
   </script>
 </head>
 <body>
-    <a href="market.html"><header><h4>Notebook App</h4></header></a>
+    <a href="market.php"><header><h4>Notebook App</h4></header></a>
   <div class="top" id="top">
     <h5 id="app-name">Paper Market</h5>
+
+  <!--SEARCH BOX, SEARCH ACCORDING TO TITLE,DESCRIPTION,COURSENAME -->
   <input type="search" name="search" id="search" placeholder="Search">
+
+
   <div id="profile-box">
     <p> <?php echo "$my_fullname"; ?> </p>
     <button type="button" id="card">My Card<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
@@ -49,35 +60,54 @@
         
         <button type="button" class="sort">Sort By</button>
         <div class="panel">
-            <button onclick="">ASCENDING PRICE</button>
-            <button onclick="">DESCENDING PRICE</button>
+            <form action="" method="post">
+              <input type="hidden" value="t" name="ascButton">
+              <button>ASCENDING PRICE</button> 
+            </form>
+
+            <form action="" method="post">
+              <input type="hidden" value="t" name="descButton">
+              <button>DESCENDING PRICE</button>   
+            </form>
         </div>
+
+        <?php
+          if(isset($_POST["ascButton"]))
+            $orderBy = "ASC";
+          else if(isset($_POST["descButton"]))
+            $orderBy = "DESC";
+
+          echo $orderBy;
+        ?>
+
+
+        
+        
+
+
         <ul class="classes">
-          <li>class</li>
-          <li>class</li>
-          <li>class</li>
-          <li>class</li>
-          <li>class</li>
-          <li>class</li>
-          <li>class</li>
-          <li>class</li>
-          <li>class</li>
-          <li>class</li>
-          <li>class</li>
-          <li>class</li>
-          <li>class</li>
-          <li>class</li>
-          <li>class</li>
-          <li>class</li>
-          <li>class</li>
-          <li>class</li>
-          <li>class</li>
-          <li>class</li>
-          <li>class</li>
-          <li>class</li>
-          <li>class</li>
-          <li>class</li>
+          <form action='' method='POST'> 
+            <button type='submit' name= "sortByCourseName" value="ALL"> ALL  </button>
+          </form>
+          <br>
+
+          <?php  //FILTER BY COURSENAME  //FETCH DATA FROM DB,  SELECT ALL COURSENAMES
+            $select_query = "SELECT course_name FROM note" ;
+            $result = mysqli_query($db,$select_query);
+            
+            while($row = mysqli_fetch_assoc($result))
+            {
+              
+              echo
+              "<form action='' method='POST'>" .
+                "<button type='submit' name= sortByCourseName value= " . $row['course_name'] . ">" . $row['course_name'] . "</button>".
+              "</form>";
+            }
+
+            ?>
+
         </ul>
+
         <hr>
         <button type="button" id="sell">Sell</button>
         <a href="#top" class="scroll-top"><i class="fa fa-angle-double-up" style="font-size:36px"></i></a>
@@ -86,36 +116,46 @@
 
 
         <?php
-        $get_detailed_table_query = "SELECT * FROM users,sells,note WHERE users.uid = sells.uid AND note.note_id = sells.note_id ORDER BY note.price " . "$orderBy" ;
+
+        if(isset($_POST["sortByCourseName"])){
+          $sortByCourseName = $_POST["sortByCourseName"];
+          $get_detailed_table_query =  "SELECT * FROM users,sells,note WHERE users.uid = sells.uid AND note.note_id = sells.note_id AND note.course_name = '$sortByCourseName'";
+          
+          if($_POST["sortByCourseName"] == "ALL"){
+            $get_detailed_table_query = "SELECT * FROM users,sells,note WHERE users.uid = sells.uid AND note.note_id = sells.note_id ORDER BY note.price " . "$orderBy";
+          }
+        }
+
+
+
         $detailed_table_result = mysqli_query($db,$get_detailed_table_query);
-
         while($row = mysqli_fetch_assoc($detailed_table_result))
-    {
-        $seller_uid = $row["uid"];
-        $seller_username = $row["nickname"];
-        $seller_fullname = $row["name"];
-        $seller_email = $row["e_mail"];
-        $seller_note_id = $row["note_id"];
-        $seller_note_title = $row["title"];
-        $seller_note_description = $row["description"];
-        $seller_note_price = $row["price"];
-        $seller_note_coursename = $row["course_name"];
+        {
+          $seller_uid = $row["uid"];
+          $seller_username = $row["nickname"];
+          $seller_fullname = $row["name"];
+          $seller_email = $row["e_mail"];
+          $seller_note_id = $row["note_id"];
+          $seller_note_title = $row["title"];
+          $seller_note_description = $row["description"];
+          $seller_note_price = $row["price"];
+          $seller_note_coursename = $row["course_name"];
 
 
-      
-        echo
-        "<div class='card'>" . 
-        "<img src='https://images.pexels.com/photos/6749464/pexels-photo-6749464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' alt='seller'>".
-        "<div class='card-content'>".
-        "<div>".
-        "<h3 class='Lecture'> " . $seller_note_coursename . "</h3><h3 class='card-value'>" . "$seller_note_price" . "$</h3>".
-        "</div>".
-        "<button type='submit'>Add to card</button>".
-        "</div>".
-        "<div class='overlay'><h6>". "$seller_note_title" . "</h6><br><h6>". "$seller_username" . "</h6><br><p>" . "$seller_note_description" ."</p></div>".
-        "</div>";
-    }
-    ?>
+        
+          echo
+          "<div class='card'>" . 
+          "<img src='https://images.pexels.com/photos/6749464/pexels-photo-6749464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' alt='seller'>".
+          "<div class='card-content'>".
+          "<div>".
+          "<h3 class='Lecture'> " . $seller_note_coursename . "</h3><h3 class='card-value'>" . "$seller_note_price" . "$</h3>".
+          "</div>".
+          "<button type='submit'>Add to card</button>".
+          "</div>".
+          "<div class='overlay'><h6>". "$seller_note_title" . "</h6><br><h6>". "$seller_username" . "</h6><br><p>" . "$seller_note_description" ."</p></div>".
+          "</div>";
+        }
+        ?>
         <!--
                   <div class="card">
                     <img src="https://images.pexels.com/photos/6749464/pexels-photo-6749464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
