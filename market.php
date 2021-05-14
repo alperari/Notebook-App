@@ -30,7 +30,7 @@
   </script>
 </head>
 <body>
-    <a href="market.html"><header><h4>Notebook App</h4></header></a>
+    <a href="market.php"><header><h4>Notebook App</h4></header></a>
   <div class="top" id="top">
     <h5 id="app-name">Paper Market</h5>
   <input type="search" name="search" id="search" placeholder="Search">
