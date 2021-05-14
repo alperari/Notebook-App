@@ -15,6 +15,9 @@
             var confirmPassword = $("#psw2").val();
             if (password != confirmPassword)
                 alert("Password does not match!");
+            else{
+                //<a href="index.html">Return to Login</a>
+            }
         }
         $(document).ready(function () {
            $("#register").click(checkPasswordMatch);
