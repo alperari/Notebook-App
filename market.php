@@ -72,16 +72,34 @@
             'seller_note_coursename' => $_POST['seller_note_coursename'] 
           );
 
-          $bool_query = "SELECT * FROM notesincart WHERE " . $item_array['seller_note_id'] . " = note_id AND " . $item_array['seller_uid'] . " = " . $my_uid;
-          $result = mysqli_query($db,$select_query);
+          $bool_query = "SELECT * FROM notesincart WHERE " . $item_array['seller_note_id'] . " = note_id AND " . $my_uid . " = " . $my_uid;
+          $result = mysqli_query($db,$bool_query);
             
-          if(mysql_num_rows($result) == 0){
+          if(mysqli_num_rows($result) == 0){
             echo "nope";
             // INSERT INTO notesincart
+            $seller_note_id = $item_array['seller_note_id'];
+            $insert_query = "INSERT INTO notesincart (uid, note_id) VALUES ('$my_uid' , '$seller_note_id')";
+            $insert_result = mysqli_query($db,$insert_query);
+            var_dump($insert_result);
+
+            echo '<script type="text/javascript">/'.'/ <![CDATA[
+              window.onload = function(){
+                alert("SUCCESSFULLY ADDED TO CART!");
+              }
+            /'.'/ ]]>
+            </script>';
           }
           else{
-            echo "yes";
-            //CART HAS ITEMS
+            
+            echo '<script type="text/javascript">/'.'/ <![CDATA[
+                  window.onload = function(){
+                    alert("YOU HAVE ALREADY ADDED THIS ITEM!");
+                  }
+                /'.'/ ]]>
+                </script>';
+
+           
           }
         }
 
