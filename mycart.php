@@ -16,6 +16,7 @@
 ?>
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +37,10 @@
     <div class="top">
         <a href="market.php"><header><h4><i class="fa fa-angle-left" style="font-size:24px;padding-right: 5px;"></i>Notebook App</h4></header></a>
         <h5>My Cart</h5>
-        <h5 style="color: #fff"> <?php echo $my_fullname?></h5>
+        <div class="top-right">
+            <h5 style="color: #fff;font-weight: 200;"> <?php echo $my_fullname ?> </h5>
+            <a href="previous_orders.php" style="text-decoration: none;margin: 0 5px;">Previous orders</a>
+        </div>
     </div>
     <main class="main">
         <div class="container">
@@ -64,23 +68,28 @@
                     '<img src="https://images.pexels.com/photos/6749464/pexels-photo-6749464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="lecture note photo" id="item-img">'.
                     
                    
-                        '<form class="content" id = "my-form" method="post">'.
+                        '<form class="content" id = "my-form" method="POST">'.
                             '<div class="card-top">'.
                             '<h6>' . $row["title"]. '</h6><p id="lecture">'. $row["course_name"]. '</p>'.
                             '</div>'.
                             '<p>'. $row["description"] .'</p>'.
                             '<label for="posted">Posted By: </label>'.
-                            '<button id="posted-name" name="posted" style="background: #DCDCDC;border: none;">'. "$seller_fullname" .'</button>'.
+                            '<button id="posted-name" name="posted" style="background: #DCDCDC;border: none;">'. "$seller_fullname   note_id: ". $row["note_id"] .'</button>'.
                             '<br>'.
                             '<input type="hidden" value=' . $row["note_id"] . ' name="removeButton">'.
                             '<label for="other">Contact info: '. "$seller_email" .'</label>'.
-                            
+
                         '</form>'.
 
 
                         '<div class="two-box">'.
                         
-                        '<button id="removeButton" type="submit" form="my-form">Remove</button>'.
+                        '<button style="background: none;border: none;" form="my-form" value='. $row["note_id"] . ' name = "removeButton">'.
+                        '<svg xmlns="http://www.w3.org/2000/svg" style ="cursor: pointer;" width="24"       height="24" fill="red" class="bi bi-trash" viewBox="0 0 16 16">'.
+                            '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>'.
+                            '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>'.
+                        '</svg>'.
+                        '</button>'.
                         '<h6>' . $row["price"] . '$</h6>'.
                         '</div>'.
 
@@ -89,11 +98,24 @@
                     '</div>';
                     $total_cost += $row["price"];
                 }
+                
                 ?>  
 
 
-                    
-               
+                    <?php
+
+                        
+                    if(isset($_POST["removeButton"])){
+                        echo $_POST["removeButton"] ;
+                        $delete_query = "DELETE FROM notesincart WHERE note_id = ". $_POST["removeButton"] . " AND uid = " . "$my_uid";
+                        $delete_result = mysqli_query($db,$delete_query);
+                        if(isset($delete_result)){
+                            echo "<script> window.location.replace('mycart.php');</script>";
+                        }
+                    }
+
+                    ?>
+                                
 
 
             </section>
@@ -107,21 +129,6 @@
     </main>
 </body>
 
-<?php
-
-    
-    if(isset($_POST["removeButton"])){
-        //echo $_POST["removeButton"] . " " . $my_uid;
-        $delete_query = "DELETE FROM notesincart WHERE note_id = ". $_POST["removeButton"] . " AND uid = " . "$my_uid";
-        $delete_result = mysqli_query($db,$delete_query);
-        if(!isset($delete_result)){
-            echo "failed to delete";
-        }
-        else {
-            echo "deleted";
-        }
-    }
-
-?>
 
 </html>
+
