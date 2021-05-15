@@ -76,12 +76,10 @@
           $result = mysqli_query($db,$bool_query);
             
           if(mysqli_num_rows($result) == 0){
-            echo "nope";
             // INSERT INTO notesincart
             $seller_note_id = $item_array['seller_note_id'];
             $insert_query = "INSERT INTO notesincart (uid, note_id) VALUES ('$my_uid' , '$seller_note_id')";
             $insert_result = mysqli_query($db,$insert_query);
-            var_dump($insert_result);
 
             echo '<script type="text/javascript">/'.'/ <![CDATA[
               window.onload = function(){
