@@ -159,7 +159,12 @@ main .bg-image {
     font-size: 0.5rem;
   }
 
-  
+h6{
+    color: #ffb3bd;
+}
+h5{
+    color: #bfd0ff;
+}
 #sell {
     width: 100%;
     border-style: none;
