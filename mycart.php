@@ -32,13 +32,6 @@
     />
     <link rel="stylesheet" href="mycart.css">
     <title>Notebook/My Cart</title>
-    <script>
-         $(document).ready(function() {
-            $(".trash").click(() => {
-                $(".item").fadeOut("slow");
-            });
-         });
-    </script>
 </head>
 <body>
     <div class="top">

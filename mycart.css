@@ -29,6 +29,7 @@ header h4 {
 
 .container {
     padding-top: 5vh;
+	max-width: 85%;
 }
 
 .card-top {
