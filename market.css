@@ -46,8 +46,8 @@ main .bg-image {
 .top {
     background: linear-gradient(
         90deg,
-        rgb(138, 138, 138),
-        rgb(174, 174, 174)
+        #333,
+        #666
     );
     display: flex;
     justify-content: center;
@@ -102,7 +102,6 @@ main .bg-image {
     background-color: #003cff;
     color: #fff;
     cursor: pointer;
-    z-index: 2;
 }
 
 .sort {
@@ -159,7 +158,12 @@ main .bg-image {
     font-size: 0.5rem;
   }
 
-  
+h6{
+    color: #ffb3bd;
+}
+h5{
+    color: #bfd0ff;
+}
 #sell {
     width: 100%;
     border-style: none;
@@ -443,13 +447,13 @@ main .bg-image {
     }
 
     #search {
-        transform: translateX(-85%);
+        transform: translateX(-55%);
     }
 }
 
-@media (max-width: 410px) {
+@media (max-width: 440px) {
     #app-name {
         position: relative;;
-        transform: translate(40%);
+        transform: translate(100%);
     }
 }
