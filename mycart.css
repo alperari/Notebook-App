@@ -1,6 +1,11 @@
 html {
+    z-index: -1;
     margin: 0;
     position: 0;
+}
+
+body {
+    background-color: #E8E8E8;
 }
 
 .top {
@@ -33,6 +38,7 @@ header h4 {
 
 .content {
     padding: 15px 1rem 15px 2rem;
+    width: 100%;
     background-color: #DCDCDC;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -58,7 +64,7 @@ header h4 {
 .two-box {
     align-self: center;
     text-align: center;
-    margin-left: 10px;
+    transform: translateX(50%);
 }
 
 .two-box > h6 {
@@ -73,6 +79,91 @@ header h4 {
 
 .right {
     text-align: center;
+}
+
+.trash {
+	background:red;
+    top: 20px;
+	width: 66px;
+	height: 80px;
+	display: inline-block;
+	margin:0 auto;
+	position: relative;
+	-webkit-border-bottom-right-radius: 6px;
+	-webkit-border-bottom-left-radius: 6px;
+	-moz-border-radius-bottomright: 6px;
+	-moz-border-radius-bottomleft: 6px;
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+.trash:after {
+	position: absolute;
+	left: -99px;
+	right: 0;
+	bottom: -50px;
+	width: 300px;
+}
+.trash span {
+	position: absolute;
+	height: 12px;
+	background: red;
+	top: -19px;
+	left: -10px;
+	right: -10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	transform: rotate(0deg);
+	transition: transform 250ms;
+	transform-origin: 19% 100%;
+}
+.trash span:after {
+	content: '';
+	position: absolute;
+	width: 27px;
+	height: 7px;
+	background: red;
+	top: -10px;
+	
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	transform: rotate(0deg);
+	transition: transform 250ms;
+	transform-origin: 19% 100%;
+	left: 27px;
+}
+
+
+.trash i {
+	position:relative;
+	width: 5px;
+	height:50px;
+	background:#E8E8E8;
+	display:block;
+	margin: 0px auto;
+	border-radius: 5px;
+}
+.trash i:after {
+	content: '';
+	width: 5px;
+	height: 50px;
+	background: #E8E8E8;
+	position: absolute;
+	left: -18px;
+	border-radius: 5px;
+}
+.trash i:before {
+	content: '';
+	width: 5px;
+	height: 50px;
+	background: #E8E8E8;
+	position: absolute;
+	right: -18px;
+	border-radius: 5px;
+}
+
+.trash:hover span {
+	transform: rotate(-45deg);
+	transition: transform 250ms;
 }
 
 /* Media Queries */
