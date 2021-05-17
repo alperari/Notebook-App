@@ -74,7 +74,7 @@
                             '</div>'.
                             '<p>'. $row["description"] .'</p>'.
                             '<label for="posted">Posted By: </label>'.
-                            '<button id="posted-name" name="posted" style="background: #DCDCDC;border: none;">'. "$seller_fullname   note_id: ". $row["note_id"] .'</button>'.
+                            '<button id="posted-name" name="posted" style="background: #DCDCDC;border: none;pointer-events: none;">'. "$seller_fullname   note_id: ". $row["note_id"] .'</button>'.
                             '<br>'.
                             '<input type="hidden" value=' . $row["note_id"] . ' name="removeButton">'.
                             '<label for="other">Contact info: '. "$seller_email" .'</label>'.

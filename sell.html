@@ -1,22 +1,3 @@
-<?php
-    include "config.php";
-    session_start();
-
-
-    $my_uid = $_SESSION['uid']   ;
-    $my_username = $_SESSION['username']  ;
-    $my_fullname = $_SESSION['fullname']  ;
-    $my_email = $_SESSION['email']  ;
-    $my_cart_id = $_SESSION['cart_id']  ;
-
-
-    $select_query = "SELECT * FROM notesincart,note WHERE notesincart.note_id = note.note_id AND notesincart.uid = $my_uid";
-    $result = mysqli_query($db,$select_query);
-    $total_cost = 0;
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +31,7 @@
                     <input type="text" name="title" id="title" required>
                     <br>
                     <label for="description">Description</label>
-                    <input type="" name="description" id="description" required>
+                    <textarea style="resize: none;" name="price" id="price" cols="30" rows="2" maxlength="60" required></textarea>
                     <br>
                     <label for="price">Price ($)</label>
                     <input type="number" name="price" id="price" min="0" required>
@@ -63,6 +44,7 @@
                 </form>
             </section>
             <section class="bottom">
+                    <legend style="text-align: center;font-size: larger;">Products on sale</legend>
                     <div class="item">
                     <img src="https://images.pexels.com/photos/6749464/pexels-photo-6749464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="lecture note photo" id="item-img">
                         <form class="content" id = "my-form" method="POST">
@@ -88,11 +70,6 @@
                         <h6>5$</h6>
                         </div>
                     </div>
-            </section>
-            <section class="tot">
-                <form action="">
-                <h6 id="total">Total price: 12$</h6>
-                </form>
             </section>
         </div>
     </main>

@@ -134,10 +134,10 @@
   </script>
 </head>
 <body>
-    <a href="market.php"><header><h4>Notebook App</h4></header></a>
+  <header><a href="market.php" style="text-decoration:none;"><h4>Notebook App</h4></a></header>
   <div class="top" id="top">
     <h4 id="app-name">Paper Market</h4>
-
+    <a href="index.html" style="position:absolute;font-size:.75rem;text-decoration:none;transform:translateY(-90%);"><i class="fa fa-angle-left" style="font-size:12px;padding-right: 5px;"></i>Log Out</a>
   <!--SEARCH BOX, SEARCH ACCORDING TO TITLE,DESCRIPTION,COURSENAME -->
   <form action="" method="post">
     <input type="text" name="searchResult" id="search" placeholder="Search">
@@ -210,7 +210,7 @@
         </ul>
 
         <hr>
-        <button type="button" id="sell">Sell</button>
+        <a href="sell.html" style="text-decoration: none;color: #fff;"><button type="button" id="sell">Sell</button></a>
         <hr>
         <a href="#top" class="scroll-top"><i class="fa fa-angle-double-up" style="font-size:36px"></i></a>
       </section>
