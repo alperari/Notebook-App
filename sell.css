@@ -73,10 +73,14 @@ header h4 {
     color: #003F87;
 }
 
+.bottom {
+    margin-top: 3rem;
+}
+
 .item {
     display: flex;
     height: 200px;
-    margin: 3rem 0 2rem 0;
+    margin: 2rem 0 2rem 0;
 }
 
 #item-img {
