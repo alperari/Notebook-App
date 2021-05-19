@@ -10,9 +10,10 @@ header {
     text-align: center;
     padding: 2rem 1em;
     font-size: x-large;
-    background-color: blue;
+    background-color: #002533;
     border-radius: 30px;
     left: -30px;
+    padding-left: 65px;
     margin-top: 20px;
     height: 20px;
 }
@@ -33,26 +34,22 @@ main .bg-image {
     top: 0;
     left: 0;
     position: fixed;
-    background: url("https://images.pexels.com/photos/5905439/pexels-photo-5905439.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    background: url("https://images.pexels.com/photos/1723637/pexels-photo-1723637.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    opacity: 0.5;
+    opacity: 0.9;
     width: 100%;
     height: 100%;
     z-index: -1;
 }
 
 .top {
-    background: linear-gradient(
-        90deg,
-        #333,
-        #666
-    );
+    background: #002533;
     display: flex;
     justify-content: center;
     justify-content: space-between;
-    box-shadow: 0 0px 15px rgb(189, 225, 226);
+    box-shadow: 0 0 55px rgb(86, 83, 92);
     height: 110px;
     padding: 1rem 2rem 1rem 2rem;
     color: #fff;
@@ -60,6 +57,7 @@ main .bg-image {
 
 #app-name {
     margin: 1.5rem 0rem 1rem 25%;
+    font-size: 1rem;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -260,7 +258,6 @@ h5{
 
 .card-content button {
     border: 1px solid rgb(22, 100, 22);
-    box-shadow: 0 0 30px #ccc;
     transition: .2s ease-out;
     border-radius: 5px;
     cursor: pointer;
@@ -441,13 +438,13 @@ h5{
     }
 
     #app-name {
-        margin: 15px 105px 0 200px;
+        margin: 15px 105px 0 400px;
         text-align: center;
         width: 300px;
     }
 
     #search {
-        transform: translateX(-55%);
+        transform: translateX(-82.5%);
     }
 }
 
