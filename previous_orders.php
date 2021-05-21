@@ -97,20 +97,7 @@
       
                   $order_item_array["notes_in_this_order"][] = $note_item_array;
                 }
-              }
-              /*
-              echo "<br> <br>FROM FOR LOOP <br>";
-              foreach($order_item_array["notes_in_this_order"] as $value){
-                echo  $value["title"] . "<br>" .
-                      $value["description"] . "<br>" .
-                      $value["note_price"] . "<br>" .
-                      $value["coursename"] . "<br>" ; 
-              }
-              */
-
-
-              //PRINT ITEM INFO
-              echo
+                echo
               '<td data-label="Amount">';
 
                 foreach($order_item_array["notes_in_this_order"] as $value){
@@ -134,6 +121,20 @@
               '<td data-label="Period">'.
                 $order_item_array["order_price"]. "$".
               '</td>';
+              }
+              /*
+              echo "<br> <br>FROM FOR LOOP <br>";
+              foreach($order_item_array["notes_in_this_order"] as $value){
+                echo  $value["title"] . "<br>" .
+                      $value["description"] . "<br>" .
+                      $value["note_price"] . "<br>" .
+                      $value["coursename"] . "<br>" ; 
+              }
+              */
+
+
+              //PRINT ITEM INFO
+              
           ?>
                 
 

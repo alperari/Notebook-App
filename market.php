@@ -210,7 +210,7 @@
         </ul>
 
         <hr>
-        <a href="sell.html" style="text-decoration: none;color: #fff;"><button type="button" id="sell">Sell</button></a>
+        <a href="sell.php" style="text-decoration: none;color: #fff;"><button type="button" id="sell">Sell</button></a>
         <hr>
         <a href="#top" class="scroll-top"><i class="fa fa-angle-double-up" style="font-size:36px"></i></a>
       </section>
@@ -279,18 +279,23 @@
             "<input type='hidden' value= '$seller_note_title'  name='seller_note_title'>".
             "<input type='hidden' value= '$seller_note_description'  name='seller_note_description'>".
             "<input type='hidden' value= '$seller_note_price'  name='seller_note_price'>".
-            "<input type='hidden' value= '$seller_note_coursename'  name='seller_note_coursename'>".
+            "<input type='hidden' value= '$seller_note_coursename'  name='seller_note_coursename'>";
 
+            if($my_fullname != $seller_fullname){
+              echo "<button type='submit' name ='addToCart'>Add to card</button>";
+            }
+            else{
+              echo "<button class='OWN' disabled>YOUR OWN PRODUCT</button>";
 
-            "<button type='submit' name ='addToCart'>Add to card</button>".
-            
+            }
 
+            echo
             "</div>".
             "<div class='overlay'><h5>". "$seller_note_title" . "</h5><br><h6>Posted by:</h6>". "$seller_fullname" . "<br> <p><h6>Contact: </h6>". "$seller_email"."</p> <h6>Description:</h6><p>" . "$seller_note_description"  ."</p></div>".
             "</form>".
           "</div>";
         }
-
+        
 
         ?>
         <!--
