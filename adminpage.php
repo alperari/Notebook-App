@@ -1,3 +1,45 @@
+<?php
+$userfilter = "id";
+$notefilter = "id";
+$orderfilter = "id";
+?>
+
+<?php
+if(isset($_POST["userid_filter"])){
+	$userfilter = $_POST["userid_filter"];
+}
+if(isset($_POST["usernick_filter"])){
+	$userfilter = $_POST["usernick_filter"];
+}
+if(isset($_POST["userfullname_filter"])){
+	$userfilter = $_POST["userfullname_filter"];
+}
+if(isset($_POST["usermail_filter"])){
+	$userfilter = $_POST["usermail_filter"];
+}
+if(isset($_POST["noteid_filter"])){
+	$notefilter = $_POST["noteid_filter"];
+}
+if(isset($_POST["notetitle_filter"])){
+	$notefilter = $_POST["notetitle_filter"];
+}
+if(isset($_POST["noteprice_filter"])){
+	$notefilter = $_POST["noteprice_filter"];
+}
+if(isset($_POST["notecname_filter"])){
+	$notefilter = $_POST["notecname_filter"];
+}
+if(isset($_POST["orderid_filter"])){
+	$orderfilter = $_POST["orderid_filter"];
+}
+if(isset($_POST["orderprice_filter"])){
+	$orderfilter = $_POST["orderprice_filter"];
+}
+if(isset($_POST["orderdate_filter"])){
+	$orderfilter = $_POST["orderdate_filter"];
+}
+?>
+
 <!DOCTYPE html>
 
 <style type="text/css">
@@ -154,8 +196,17 @@ button {
 <body>
 	<h1 style="color: red">Notebook Admin Panel</h1>
 
+
 <table class="container">
 	<h1>Users</h1>
+	<form method="POST">
+	<div style="display: table; margin-right: auto; margin-left: auto" id="filterContainer">
+		<button class="btn active" value="id" name="userid_filter" style = 'background-color: #ebe534;'>By id</button>
+		<button class = "btn" value ="nick" name = "usernick_filter" style = 'background-color: #ebe534;'>By nickname</button>
+		<button class = "btn" value = "fullname" name = "userfullname_filter" style = 'background-color: #ebe534;'>By fullname</button>
+		<button class = "btn" value = "email" name ="usermail_filter" style = 'background-color: #ebe534;'>By e-mail</button>
+	</div>
+	</form>
 	<thead>
 		<tr>
 			<th><h1>User id</h1></th>
@@ -169,7 +220,18 @@ button {
 	<tbody>
 		<?php
 			include "config.php";
-			$sql_statement = "SELECT * FROM users";
+			if($userfilter == "id"){
+				$sql_statement = "SELECT * FROM users ORDER BY users.uid";
+			}
+			if($userfilter == "nick"){
+				$sql_statement = "SELECT * FROM users ORDER BY users.nickname";
+			}
+			if($userfilter == "fullname"){
+				$sql_statement = "SELECT * FROM users ORDER BY users.name";
+			}
+			if($userfilter == "email"){
+				$sql_statement = "SELECT * FROM users ORDER BY users.e_mail";
+			}
 			$result = mysqli_query($db,$sql_statement);
 			while($row = mysqli_fetch_assoc($result)){
 				$id = $row['uid'];
@@ -177,39 +239,12 @@ button {
 				$pwd = $row['pwd'];
 				$name = $row['name'];
 				$email = $row['e_mail'];
-				echo "<tr>"."<td>".$id."<td>".$nick."<td>".$pwd."<td>".$name."<td>".$email."<td>"."<form action = '' method = 'POST'>"."<input type = 'hidden' value=".$id." name = 'delete'>"."<button style = 'background-color: #ea061d;'> Delete </button>"."</form>" ."<tr>";
+				echo "<tr>"."<td>".$id."<td>".$nick."<td>".$pwd."<td>".$name."<td>".$email."<td>"."<form action = 'delete_user.php' method = 'POST'>"."<input type = 'hidden' value=".$id." name = 'delete'>"."<button style = 'background-color: #ea061d;'> Delete </button>"."</form>" ."<tr>";
 			}
-			if(isset($_POST['delete'])){
-				$id = $_POST['delete'];
-				$sql_statement = "DELETE FROM users WHERE Users.uid = $id";
-				$result = mysqli_query($db,$sql_statement);
-				if($result != 1){
-					echo mysqli_error();
-				}
-				else{
-					header("location: index.php");
-					exit();
-				}
-			}
-			if(isset($_POST['submit'])){
-				$nickname = $_POST['nickname'];
-				$pwd = $_POST['pwd'];
-				$name = $_POST['name'];
-				$e_mail = $_POST['e_mail'];
-				$sql_statement = "INSERT INTO users(uid, nickname, pwd, name, e_mail)
-                        VALUES (DEFAULT,'$nickname','$pwd','$name', '$e_mail')";
-				$insert = mysqli_query($db,$sql_statement);
-				if($insert != 1){
-					echo mysqli_error();
-				}
-				else{
-					header("location: index.php");
-					exit();
-				}
-			}
+			
 			?>
 		<tr>
-			<form method="POST">
+			<form action="add_user.php" method="POST">
 			<td><span class="label">Id</span></td>
 			<td><input type="text" name="nickname"></td>
 			<td><input type="text" name="pwd"></td>
@@ -222,6 +257,14 @@ button {
 </table>
 <table class="container">
 	<h1>Notes</h1>
+	<form method="POST">
+	<div style="display: table; margin-right: auto; margin-left: auto"  id="filterContainer">
+		<button class="btn active" value = "id" name ="noteid_filter" style = 'background-color: #ebe534;'>By id</button>
+		<button class = "btn" value = "title" name= "notetitle_filter" style = 'background-color: #ebe534;'>By title</button>
+		<button class = "btn" value = "price" name ="noteprice_filter" style = 'background-color: #ebe534;'>By price</button>
+		<button class = "btn" value = "course" name = "notecname_filter" style = 'background-color: #ebe534;'>By Course Name</button>
+	</div>
+	</form>
 	<thead>
 		<tr>
 			<th><h1>Note id</h1></th>
@@ -235,7 +278,18 @@ button {
 	<tbody>
 		<?php
 		include "config.php";
-		$sql_statement = "SELECT * FROM note";	
+		if($notefilter == "id"){
+			$sql_statement = "SELECT * FROM note ORDER BY note.note_id";
+		}
+		if($notefilter == "title"){
+			$sql_statement = "SELECT * FROM note ORDER BY note.title";
+		}
+		if($notefilter == "price"){
+			$sql_statement = "SELECT * FROM note ORDER BY note.price";
+		}
+		if($notefilter == "course"){
+			$sql_statement = "SELECT * FROM note ORDER BY note.course_name";
+		}	
 		$result = mysqli_query($db,$sql_statement);
 		while($row = mysqli_fetch_assoc($result)){
 			$id = $row['note_id'];
@@ -244,40 +298,13 @@ button {
 			$price = $row['price'];
 			$cname = $row['course_name'];
 			echo "<tr>"."<td>".$id."<td>".$title."<td>".$desc."<td>".$price
-			."<td>".$cname."<td>"."<form action = '' method = 'POST'>".
+			."<td>".$cname."<td>"."<form action = 'delete_note.php' method = 'POST'>".
 				"<input type = 'hidden' value=".$id." name = 'deletenote'>"."<button style = 'background-color: #ea061d;'> Delete </button>"."</form>" ."<tr>";
 		}
-		if(isset($_POST['deletenote'])){
-			$id = $_POST['deletenote'];
-			$sql_statement = "DELETE FROM note WHERE note.note_id = $id";
-			$result = mysqli_query($db,$sql_statement);
-			if($result != 1){
-				echo mysqli_error();
-			}
-			else{
-				header("location: index.php");
-				exit();
-			}
-		}
-		if(isset($_POST['notesubmit'])){
-			$title = $_POST['title'];
-			$desc = $_POST['desc'];
-			$price = $_POST['price'];
-			$cname = $_POST['course_name'];
-			$sql_statement = "INSERT INTO note(note_id,title,description,price, course_name)
-                VALUES (DEFAULT,'$title','$desc','$price', '$cname')";
-			$insert = mysqli_query($db,$sql_statement);
-			if($insert != 1){
-				echo mysqli_error();
-			}
-			else{
-				header("location: index.php");
-				exit();
-			}
-		}
+		
 		?>
 		<tr>
-			<form method="POST">
+			<form action="add_note.php" method="POST">
 			<td><span class="label">Id</span></td>
 			<td><input type="text" name="title"></td>
 			<td><input type="text" name="desc"></td>
@@ -290,6 +317,13 @@ button {
 </table>
 <table class = "container">
 	<h1>Orders</h1>
+	<form method="POST">
+	<div style="display: table; margin-right: auto; margin-left: auto" id="filterContainer">
+		<button class="btn active" value ="id" name = "orderid_filter" style = 'background-color: #ebe534;'>By id</button>
+		<button class = "btn" value = "price" name = "orderprice_filter" style = 'background-color: #ebe534;'>By Price</button>
+		<button class = "btn" value="date" name = "orderdate_filter" style = 'background-color: #ebe534;'>By Date</button>
+	</div>
+	</form>
 	<thead>
 		<tr>
 			<th><h1>Order id</h1></th>
@@ -298,47 +332,32 @@ button {
 			<th><h1>Actions</h1></th>
 		</tr>
 	</thead>
-	<tbody>
-		<?php 
+	<tbody> 
+		<?php
 		include "config.php";
-		$sql_statement = "SELECT * FROM orders";	
+		if($orderfilter == "id"){
+			$sql_statement = "SELECT * FROM orders ORDER BY orders.oid";
+		}
+		if($orderfilter == "price"){
+			$sql_statement = "SELECT * FROM orders ORDER BY orders.price";
+		}
+		if($orderfilter == "date"){
+			$sql_statement = "SELECT * FROM orders ORDER BY orders.date";
+		}
+
+			
 		$result = mysqli_query($db,$sql_statement);
 		while($row = mysqli_fetch_assoc($result)){
 		$oid = $row['oid'];
 		$price = $row['price'];
 		$date = $row['date'];
-		echo "<tr>"."<td>".$oid."<td>".$price."<td>".$date."<td>"."<form action = '' method = 'POST'>".
+		echo "<tr>"."<td>".$oid."<td>".$price."<td>".$date."<td>"."<form action = 'delete_order.php' method = 'POST'>".
 			"<input type = 'hidden' value=".$oid." name = 'deleteorder'>"."<button style = 'background-color: #ea061d;'> Delete </button>"."</form>" ."<tr>";		
 		}
-		if(isset($_POST['deleteorder'])){
-			$id = $_POST['deleteorder'];
-			$sql_statement = "DELETE FROM orders WHERE orders.oid = $id";
-			$result = mysqli_query($db,$sql_statement);
-			if($result != 1){
-				echo mysqli_error();
-			}
-			else{
-				header("location: index.php");
-				exit();
-			}
-		}	
-		if(isset($_POST['ordersubmit'])){
-			$price = $_POST['price'];
-			$date = $_POST['date'];
-			$sql_statement = "INSERT INTO orders(`oid`,price,`date`)
-                    VALUES (DEFAULT,'$price','$date')";
-			$insert = mysqli_query($db,$sql_statement);
-			if($insert != 1){
-				echo mysqli_error();
-			}
-			else{
-				header("location: index.php");
-				exit();
-			}
-		}
+		
 		?>
 		<tr>
-			<form method="POST">
+			<form action = "add_order.php" method="POST">
 			<td><span class="label">Id</span></td>
 			<td><input type="text" name="price"></td>
 			<td><input type="text" name="date"></td>
