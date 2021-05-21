@@ -266,6 +266,16 @@ h5{
     border-bottom-style: none;
 }
 
+.card-content button.OWN {
+    color: darkred;
+    border: 1px solid;
+    transition: .2s ease-out;
+    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-style: none;
+}
+
 .card {
     position: relative;
     max-width: 300px;
@@ -303,6 +313,17 @@ h5{
     background-color: #eee;
     transition: .5s ease;
     transform: scale(1.1);
+}
+
+.card-content button.OWN:hover {
+    background-color: red;
+    border: 1px solid red;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-style: none;
+    color: #fff;
+    cursor: default;
+
 }
 
 .card-content button:hover {

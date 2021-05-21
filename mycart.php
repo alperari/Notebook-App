@@ -73,9 +73,11 @@
                             '<h6>' . $row["title"]. '</h6><p id="lecture">'. $row["course_name"]. '</p>'.
                             '</div>'.
                             '<p>'. $row["description"] .'</p>'.
-                            '<label for="posted"><i>Posted By</i>: </label>'.
-                            '<button id="posted-name" name="posted" style="background: #DCDCDC;border: none;pointer-events: none;">'. "<i>$seller_fullname</i>". '</button>'.
-                            '<br>'.'<label for="other"><i>Contact info:</i> '. "<i>$seller_email</i>" .'</label>'.
+                            '<label for="posted">Posted By: </label>'.
+                            '<button id="posted-name" name="posted" style="background: #DCDCDC;border: none;">'. "$seller_fullname   note_id: ". $row["note_id"] .'</button>'.
+                            '<br>'.
+                            '<input type="hidden" value=' . $row["note_id"] . ' name="removeButton">'.
+                            '<label for="other">Contact info: '. "$seller_email" .'</label>'.
 
                         '</form>'.
 
@@ -119,7 +121,7 @@
 
             </section>
             <section class="right">
-                <form action="">
+                <form action="makeOrder.php" method="POST">
                 <h6 id="total">Total price: <?php echo $total_cost?>$</h6>
                 <button type="submit" class="btn btn-success" style="margin: 0 20px;">Order!</button>
                 </form>
