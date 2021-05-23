@@ -38,8 +38,8 @@
         <a href="market.php"><header><h4><i class="fa fa-angle-left" style="font-size:24px;padding-right: 5px;"></i>Notebook App</h4></header></a>
         <h5>My Cart</h5>
         <div class="top-right" style="text-align: center;">
-            <h5 style="color: #fff;font-weight: 200;"> <?php echo $my_fullname ?> </h5>
-            <a href="previous_orders.php" style="text-decoration: none; color:lightskyblue;">Previous orders</a>
+            <h5 style="color: #fff;font-weight: 200;"><a href="profile.html" style="color: #fff;text-decoration: none;"><?php echo $my_fullname ?></a></h5>
+            <a href="previous_orders.php" style="text-decoration: none;">Previous orders</a>
         </div>
     </div>
     <main class="main">

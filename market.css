@@ -175,6 +175,7 @@ h5{
     margin-left: -2.5rem;
     width: auto;
     max-height: 20vmax;
+    min-width: fit-content;
     list-style: none;
     overflow-y: auto;
     overflow-x: auto;
@@ -198,6 +199,7 @@ h5{
     width: 100%;
     font-size: small;
     border: 1px solid #ccc;
+    min-width: fit-content;
     border-radius: 5px;
     cursor: pointer;
 }

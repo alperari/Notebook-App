@@ -20,11 +20,10 @@
 
         <form action="market.php" method="">
           <input type="submit" value="GO BACK" style = 
-            "width: 5%;
+            "width: fit-content;
             background-color: #4CAF50;
             color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
+            margin: 8px 1rem;
             border: none;
             border-radius: 4px;
             cursor: pointer;">

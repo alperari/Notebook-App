@@ -14,11 +14,10 @@
         $result = mysqli_query($db,$select_query);
         $row = mysqli_fetch_assoc($result);
         if($row == NULL){
-            //header ("Location: ../index.html", true);
+            header ("Location: ../index.html", true);
         }    
 
         else{
-        //echo $row["uid"] . $row["nickname"] . $row["name"];
             session_start();
             $_SESSION['uid']   = $row["uid"];
             $_SESSION['username']  = $row["nickname"];

@@ -34,7 +34,7 @@
     <div class="nav">
         <a href="market.php"><header><h4><i class="fa fa-angle-left" style="font-size:24px;padding-right: 5px;"></i>Notebook App</h4></header></a>
         <h5 style="width: 100px;margin: 0 auto;">Sell</h5>
-        <h5 style="color: #fff;font-weight: 200;"> <?php echo $my_fullname;?></h5>
+        <h5 style="color: #fff;font-weight: 200;"><a href="profile.html" style="color: #fff;text-decoration: none;"><?php echo $my_fullname;?></a></h5>
     </div>
     <main class="main">
         <div class="container">
@@ -45,16 +45,16 @@
                     <button type="submit" value="" class="btn btn-primary" style="box-sizing: border-box;padding: 3rem;margin-bottom: 1rem;">Upload File</button>
                     <br>
                     <label for="title">Title</label>
-                    <input type="text" name="title" id="title" required>
+                    <input type="text" name="title" id="title" maxlength="30" required>
                     <br>
                     <label for="description">Description</label>
-                    <textarea style="resize: none;" name="description" id="price" cols="30" rows="2" maxlength="60" required></textarea>
+                    <textarea style="resize: none;" name="description" id="price" cols="30" rows="2" maxlength="50" required></textarea>
                     <br>
                     <label for="price">Price ($)</label>
                     <input type="number" name="price" id="price" min="0" required>
                     <br>
                     <label for="course_name">Course Name</label>
-                    <input type="text" name="course_name" id="course_name" required>
+                    <input type="text" name="course_name" id="course_name" maxlength="15" required>
                     <br>
                     <button type="submit" class="m_7324175046419835022mlContentButton" style="margin-top: 1rem;font-family:'Trebuchet MS',Helvetica,sans-serif;background-color: forestgreen;
                     cursor: pointer;border-bottom:5px solid green;border-radius:5px;color:#ffffff;display:inline-block;font-size:18px;font-weight:500;line-height:24px;text-align:center;text-decoration:none;width:100px">SELL</button>
