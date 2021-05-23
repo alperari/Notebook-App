@@ -1,0 +1,73 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #666;
+    overflow: hidden;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    background-color: #333;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.nav > h5 {
+    box-sizing: border-box;
+    padding-top: 8px;
+    color: #fff;
+}
+
+header h4 {
+    padding-top: 5px;
+}
+
+.portrait {
+    width: 200px;
+    height: 200px;
+    background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo4-U2alMPHVKZmVnO1THON7H6vUahxP23xw&usqp=CAU");
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    border: solid 3px #280ca0;
+    margin: 5vh auto;
+}
+
+form {
+    display: flex;
+    flex-flow: column wrap;
+    text-align: center;
+    color: #fff;
+    margin: 5vw auto;
+}
+
+label {
+    width: 100%;
+}
+
+input {
+    margin-bottom: 2rem;
+    min-width: 20%;
+    border-color: #666;
+    border-top-left-radius: 5px;
+}
+
+::-webkit-input-placeholder {
+    text-align: center;
+  }
+  
+:-moz-placeholder {
+    text-align: center;
+}
+
+#btn {
+    margin-top: 3vh;
+    cursor: pointer;
+}
+
+fieldset {
+    border: 1px #fff solid;
+    width: 99.72%;
+}
