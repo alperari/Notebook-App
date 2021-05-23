@@ -282,7 +282,7 @@
             "<input type='hidden' value= '$seller_note_coursename'  name='seller_note_coursename'>";
 
             if($my_fullname != $seller_fullname){
-              echo "<button type='submit' name ='addToCart'>Add to card</button>";
+              echo "<button type='submit' name ='addToCart'>Add To Cart</button>";
             }
             else{
               echo "<button class='OWN' disabled>YOUR OWN PRODUCT</button>";

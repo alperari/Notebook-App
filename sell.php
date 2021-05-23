@@ -41,7 +41,7 @@
             <section class="top">
                 <h6 style="margin-top: 1rem;">- Choose File -</h6>
                 
-                <form action="sellProduct.php" method="POST">
+                <form action="services/sellProduct.php" method="POST">
                     <button type="submit" value="" class="btn btn-primary" style="box-sizing: border-box;padding: 3rem;margin-bottom: 1rem;">Upload File</button>
                     <br>
                     <label for="title">Title</label>

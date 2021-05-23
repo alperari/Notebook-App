@@ -1,5 +1,5 @@
 <?php
-    include "config.php";
+    include "../config.php";
     //echo $_POST["username"];
     if ($_POST['email']) {
         # code...
@@ -14,7 +14,7 @@
         $result = mysqli_query($db,$select_query);
         $row = mysqli_fetch_assoc($result);
         if($row == NULL){
-            header ("Location: index.html", true);
+            //header ("Location: ../index.html", true);
         }    
 
         else{
@@ -26,7 +26,7 @@
             $_SESSION["email"] = $row["e_mail"];
             $_SESSION['cart_id']  = $row["uid"];
 
-            header ("Location: market.php",true);
+            header ("Location: ../market.php",true);
         }
 
     }

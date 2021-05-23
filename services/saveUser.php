@@ -1,5 +1,5 @@
 <?php
-    include "config.php";
+    include "../config.php";
     //echo $_POST["username"];
     if ($_POST['username']) {
         # code...
@@ -10,7 +10,7 @@
         $password_confirm = $_POST["password-confirm"];
 
         if($password != $password_confirm)
-            header ("Location: register.html");
+            header ("Location: ../register.html");
 
         
 
@@ -26,10 +26,10 @@
         $result = mysqli_query($db, $sql_query);
         echo "result: " . $result . "<br>";
         if($result == 1){
-            header ("Location: index.html");
+            header ("Location: ../index.html");
         }
         else{
-            header ("Location: register.html");
+            header ("Location: ../register.html");
         }
        }
 

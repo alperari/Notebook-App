@@ -1,5 +1,5 @@
 <?php
-include "config.php";
+include "../config.php";
 
 session_start();
 
@@ -17,7 +17,7 @@ session_start();
     $result = mysqli_query($db, $select_items_in_cart_qeury);
 
     if(mysqli_num_rows($result)==0){
-        header("location: mycart.php",true);
+        header("location: ../mycart.php",true);
     }
     else{
 
@@ -82,7 +82,7 @@ session_start();
                 alt="alternatetext">
                 <h2><p style="font-family:'Arial'">YOUR ORDER IS SUCCESSFULLY COMPLETED!</p></h2>
                 <h2><p style="font-family:'Arial'">YOU CAN CHECK YOUR ORDERINGS FROM "PREVIOUS ORDERS" SECTION</p><h2>
-                <a href="market.php"><button>RETURN</button></a>
+                <a href="../market.php"><button>RETURN</button></a>
             </center>
         </html>
         <?php

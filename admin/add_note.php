@@ -1,5 +1,5 @@
 <?php
-include "config.php";
+include "../config.php";
 
 if(isset($_POST['notesubmit'])){
 	$title = $_POST['title'];
@@ -10,7 +10,7 @@ if(isset($_POST['notesubmit'])){
         VALUES (DEFAULT,'$title','$desc','$price', '$cname')";
 	$insert = mysqli_query($db,$sql_statement);
 	if($insert != 1){
-		echo mysqli_error();
+		echo $insert->error;
 	}
 	else{
 		header("location: index.php");

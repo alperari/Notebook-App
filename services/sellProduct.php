@@ -1,5 +1,5 @@
 <?php 
-    include "config.php";
+    include "../config.php";
 
     session_start();
 
@@ -38,7 +38,7 @@
         $insert_results = mysqli_query($db,$insert_into_sells_query);
 
         if($insert_results){
-            header("location: sell.php",true);
+            header("location: ../sell.php",true);
         }
         else{
             echo "PROBLEM WITH INSERTION TO SELLS!";

@@ -111,8 +111,7 @@ input[type=text] {
   width: 130px;
   border-radius: 5px;
   font-size:16px;
-  background-color: #1F2739
-  color: #ea0404;
+  background-color: #1F2739;
 
 }
 
@@ -121,7 +120,7 @@ input[type=submit] {
 }
 
 input, select, textarea{
-    //color: #A7A1AE;
+    color: white;
 }
 
 button {
@@ -219,7 +218,7 @@ button {
 	</thead>
 	<tbody>
 		<?php
-			include "config.php";
+			include "../config.php";
 			if($userfilter == "id"){
 				$sql_statement = "SELECT * FROM users ORDER BY users.uid";
 			}
@@ -277,7 +276,7 @@ button {
 	</thead>
 	<tbody>
 		<?php
-		include "config.php";
+		include "../config.php";
 		if($notefilter == "id"){
 			$sql_statement = "SELECT * FROM note ORDER BY note.note_id";
 		}
@@ -334,7 +333,7 @@ button {
 	</thead>
 	<tbody> 
 		<?php
-		include "config.php";
+		include "../config.php";
 		if($orderfilter == "id"){
 			$sql_statement = "SELECT * FROM orders ORDER BY orders.oid";
 		}

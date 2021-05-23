@@ -1,5 +1,5 @@
 <?php
-include "config.php";
+include "../config.php";
 
 if(isset($_POST['ordersubmit'])){
 	$price = $_POST['price'];
@@ -8,7 +8,7 @@ if(isset($_POST['ordersubmit'])){
             VALUES (DEFAULT,'$price','$date')";
 	$insert = mysqli_query($db,$sql_statement);
 	if($insert != 1){
-		echo mysqli_error();
+		echo $insert->error;
 	}
 	else{
 		header("location: index.php");

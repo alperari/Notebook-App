@@ -41,7 +41,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              
 
 
           <?php
@@ -66,6 +66,7 @@
                 
                 //PRINT OID
                 echo
+                '<tr>'.
                 '<td data-label="Account">'.
                   $order_item_array["oid"].
                 '</td>';
@@ -77,7 +78,7 @@
                 '</td>';
 
                 //PRING ITEMS
-                $select_notes_query = "SELECT * FROM note,notesinorder,ordered WHERE note.note_id = notesinorder.note_id AND ordered.uid = " . $my_uid  . " AND notesinorder.oid = " . $order_item_array['oid'];
+                $select_notes_query = "SELECT * FROM note WHERE note_id IN (SELECT note_id FROM notesinorder WHERE oid = " . $order_item_array['oid'] . ")";
                 $result_notes_query = mysqli_query($db,$select_notes_query);
 
                 while($row_notes = mysqli_fetch_assoc($result_notes_query)){
@@ -100,14 +101,15 @@
                 echo
               '<td data-label="Amount">';
 
-                foreach($order_item_array["notes_in_this_order"] as $value){
+                foreach($order_item_array["notes_in_this_order"] as $key=>$value){
                   echo  
-                  "<div class='w3-round-large w3-teal'>".
+                  "<div class='w3-round-large w3-grey'>".
                     "<hr>".
-                    "<strong>• Title: </strong>".  $value["title"] ."<br>".
-                    "<strong>• Description: </strong>".  $value["description"] ."<br>".
-                    "<strong>• Price: </strong>" . $value["note_price"] . "$<br>".
-                    "<strong>• Coursename: </strong>" . $value["coursename"] . "<br>".
+                    "Item " . ($key+1). "<br><br>".
+                    "<pr style='color:black; font-weight: bold;'> Title:       </pr>".  $value["title"] ."<br>".
+                    "<pr style='color:black; font-weight: bold;'> Description: </pr>".  $value["description"] ."<br>".
+                    "<pr style='color:black; font-weight: bold;'> Price:       </pr>" . $value["note_price"] . "$<br>".
+                    "<pr style='color:black; font-weight: bold;'> Coursename:  </pr>" . $value["coursename"] . "<br>".
                     "<hr>".
                   "</div>".
                   "<br>" ; 
@@ -120,7 +122,8 @@
               echo
               '<td data-label="Period">'.
                 $order_item_array["order_price"]. "$".
-              '</td>';
+              '</td>'.
+              '</tr>';
               }
               /*
               echo "<br> <br>FROM FOR LOOP <br>";
@@ -143,7 +146,7 @@
                 
 
                 
-              </tr>
+             
              
             </tbody>
           </table>
