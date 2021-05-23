@@ -107,12 +107,13 @@
                     }
 
                     if(isset($_POST["removeButton"])){
-                        echo $_POST["removeButton"] ;
-                        $delete_query = "DELETE FROM `sells` WHERE uid = $my_uid AND note_id = ". $_POST['removeButton'];
-                        $delete_result = mysqli_query($db,$delete_query);
-                        if(isset($delete_result)){
-                            echo "<script> window.location.replace('sell.php');</script>";
-                        }
+                        
+                        $delete_query = "DELETE FROM `note` WHERE note_id = ". $_POST['removeButton'];
+                        mysqli_query($db,$delete_query);
+                        
+                       
+                        echo "<script> window.location.replace('sell.php');</script>";
+                        
                     }
 
                     ?>

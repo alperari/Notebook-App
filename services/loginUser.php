@@ -24,7 +24,7 @@
             $_SESSION['fullname']  = $row["name"];
             $_SESSION["email"] = $row["e_mail"];
             $_SESSION['cart_id']  = $row["uid"];
-
+            $_SESSION["password"] = $row["pwd"];
             header ("Location: ../market.php",true);
         }
 
