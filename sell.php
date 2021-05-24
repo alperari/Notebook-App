@@ -39,10 +39,10 @@
     <main class="main">
         <div class="container">
             <section class="top">
-                <h6 style="margin-top: 1rem;">- Choose File -</h6>
-                
+                <h6>UPLOAD YOUR DOCUMENT TO DRIVE!</h6>
                 <form action="services/sellProduct.php" method="POST">
-                    <button type="submit" value="" class="btn btn-primary" style="box-sizing: border-box;padding: 3rem;margin-bottom: 1rem;">Upload File</button>
+                    <label for="drive_link"><strong>URL TO DRIVE</strong></label>
+                    <input type="text" name="drive_link" id="drive_link" maxlength="200" required>
                     <br>
                     <label for="title">Title</label>
                     <input type="text" name="title" id="title" maxlength="30" required>

@@ -86,7 +86,8 @@
                       'title' => $row_notes["title"], 
                       'description' =>  $row_notes["description"], 
                       'note_price' => $row_notes["price"],
-                      'coursename' => $row_notes["course_name"]
+                      'coursename' => $row_notes["course_name"],
+                      'url' => $row_notes["DriveLink"],
                   );
 
                   //echo $note_item_array["title"] . "<br>".
@@ -109,7 +110,8 @@
                     "<pr style='color:black; font-weight: bold;'> Description: </pr>".  $value["description"] ."<br>".
                     "<pr style='color:black; font-weight: bold;'> Price:       </pr>" . $value["note_price"] . "$<br>".
                     "<pr style='color:black; font-weight: bold;'> Coursename:  </pr>" . $value["coursename"] . "<br>".
-                    "<hr>".
+                    "<pr style='color:blue'> URL: <a href='".  $value["url"] . "'>" . "DOCUMENT" . "</a><br></pr>".
+
                   "</div>".
                   "<br>" ; 
                 }

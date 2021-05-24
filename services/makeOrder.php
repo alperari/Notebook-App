@@ -42,7 +42,7 @@ session_start();
                 'note_id' =>$note_info["note_id"],
                 'price' =>$note_info["price"],
                 'coursename' =>$note_info["course_name"],
-
+                'url' => $note_info["DriveLink"],
             );
 
             $all_notes[] = $current_note;

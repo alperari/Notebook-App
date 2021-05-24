@@ -16,13 +16,13 @@
         $description = $_POST["description"];
         $price = $_POST["price"];
         $coursename = $_POST["course_name"];
-
+        $url = $_POST["drive_link"];
         //NOW ADD THIS TO DATABASE sells table
         
 
         //but first we need to create 'note' instance
-        $insert_note_query = "INSERT INTO note(note_id, title, description, price, course_name) 
-                                VALUES (DEFAULT, '$title', '$description', '$price', '$coursename')" ;
+        $insert_note_query = "INSERT INTO note(note_id, title, description, price, course_name, DriveLink) 
+                                VALUES (DEFAULT, '$title', '$description', '$price', '$coursename', '$url')" ;
         $insert_result = mysqli_query($db,$insert_note_query);
 
         //now get the id of product that we inserted just right now;
