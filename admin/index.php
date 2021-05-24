@@ -271,6 +271,7 @@ button {
 			<th><h1>Description</h1></th>
 			<th><h1>Price</h1></th>
 			<th><h1>Course Name</h1></th>
+			<th><h1>Note Link</h1></th>
 			<th><h1>Actions</h1></th>
 		</tr>
 	</thead>
@@ -296,8 +297,9 @@ button {
 			$desc = $row['description'];
 			$price = $row['price'];
 			$cname = $row['course_name'];
+			$link = $row['DriveLink'];
 			echo "<tr>"."<td>".$id."<td>".$title."<td>".$desc."<td>".$price
-			."<td>".$cname."<td>"."<form action = 'delete_note.php' method = 'POST'>".
+			."<td>".$cname."<td>"."<a href = ".$link.">Link</a>". "<td>". "<form action = 'delete_note.php' method = 'POST'>".
 				"<input type = 'hidden' value=".$id." name = 'deletenote'>"."<button style = 'background-color: #ea061d;'> Delete </button>"."</form>" ."<tr>";
 		}
 		
@@ -309,6 +311,7 @@ button {
 			<td><input type="text" name="desc"></td>
 			<td><input type="text" name="price"></td>
 			<td><input type="text" name="course_name"></td>
+			<td><input type="text" name="note_link"></td>
 			<td><input style = 'background-color: #1fee0c;'type="submit" name="notesubmit" value="Add"></td>
 			</form>
 		</tr>
