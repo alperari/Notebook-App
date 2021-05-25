@@ -23,9 +23,9 @@ $my_email = $_SESSION['email']  ;
 </head>
 <body>
     <div class="nav">
-        <a href="market.php"><header><h4>Notebook App</h4></header></a>
-        <h5 style="width: 100px;margin-right: 1.5rem;">Profile</h5>
-        <h5 style="color: #fff;font-weight: 200;"><?php echo $my_fullname?> </h5>
+        <a href="market.php" style="z-index: 2;"><header><h4>Notebook App</h4></header></a>
+        <h5 style="position: absolute;text-align: center;width: 100%;margin: 0 auto;">Profile</h5>
+        <h5 style="color: #fff;font-weight: 200;"z-index: 2;"><?php echo $my_fullname?> </h5>
     </div>
     <form action="./services/editProfile.php" method="POST">
         <fieldset>
