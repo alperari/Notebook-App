@@ -34,7 +34,7 @@
     <div class="nav">
         <a href="market.php"><header><h4><i class="fa fa-angle-left" style="font-size:24px;padding-right: 5px;"></i>Notebook App</h4></header></a>
         <h5 style="width: 100px;margin: 0 auto;">Sell</h5>
-        <h5 style="color: #fff;font-weight: 200;"><a href="profile.html" style="color: #fff;text-decoration: none;"><?php echo $my_fullname;?></a></h5>
+        <h5 style="color: #fff;font-weight: 200;"><a href="profile.php" style="color: #fff;text-decoration: none;"><?php echo $my_fullname;?></a></h5>
     </div>
     <main class="main">
         <div class="container">
